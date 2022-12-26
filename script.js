@@ -8,14 +8,13 @@ function checkCorrect_work () {if ( isNaN(minValue)  || isNaN(maxValue)) {
 } else {
     minValue = minValue ;
     maxValue = maxValue ;
-}
-
 // Зададим границы мин макс значений for minValue and maxValue
     -1000>minValue ?  minValue = -999 : minValue = minValue ;
 minValue>1000 ? minValue=999   :   minValue = minValue ;
 
 -1000>maxValue ?  maxValue = -999 : maxValue = maxValue ;
 maxValue>1000 ? maxValue=999   :   maxValue = maxValue ;
+}
 }
 
 checkCorrect_work ()
@@ -36,33 +35,24 @@ answerField.innerText = `Вы загадали число ${answerNumber }?`;
 
 document.getElementById('btnRetry').addEventListener('click',reset);
  function reset () {
-    minValue = 0; 
-    maxValue = 100; 
+    minValue = 0 ;
+    maxValue = 0 ;
     orderNumber = 0; 
     answerNumber = 0; 
     checkInput()
 }
 
 function checkInput () {
-    let minValue = parseInt(prompt('Минимальное знание числа для игры','0'));
-    let maxValue = parseInt(prompt('Максимальное знание числа для игры','100'));
-    if ( isNaN(minValue)  || isNaN(maxValue)) {
-        minValue = 0 ;
-        maxValue = 100;
-    } else {
-        minValue = minValue ;
-        maxValue = maxValue ;
-    }
-        -1000>minValue ?  minValue = -999 : minValue = minValue ;
-    minValue>1000 ? minValue=999   :   minValue = minValue ;
-    
-    -1000>maxValue ?  maxValue = -999 : maxValue = maxValue ;
-    maxValue>1000 ? maxValue=999   :   maxValue = maxValue ; // Без повтора кода , у меня не получилось достичь нужного результат
+    minValue = parseInt(prompt('Минимальное знание числа для игры','0'));
+    maxValue = parseInt(prompt('Максимальное знание числа для игры','100'));
+    checkCorrect_work ()
     alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
     answerNumber  = Math.floor((minValue + maxValue) / 2);
     answerField.innerText = `Вы загадали число ${answerNumber }?`;
+    checkCorrect_work ()
     startGame ()
 }
+
 
 function startGame () {
     gameRun = true;
